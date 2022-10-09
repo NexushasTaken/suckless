@@ -113,3 +113,7 @@ static const Button buttons[] = {
 	{ ClkTagBar,            MODKEY,         Button3,        toggletag,      {0} },
 };
 
+static const char *const autostart[] = {
+  "alacritty", NULL,
+	NULL /* terminate */
+};

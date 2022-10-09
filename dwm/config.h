@@ -32,28 +32,26 @@
 /* appearance */
 static const unsigned int borderpx  = 1;        /* border pixel of windows */
 static const unsigned int snap      = 10;       /* snap pixel */
-static const int showbar            = 1;        /* 0 means no bar */
-static const int topbar             = 1;        /* 0 means bottom bar */
-static const char *fonts[]          = { "Hack Nerd Font:size=11:antialias=true" };
-static const char dmenufont[]       = "Hack Nerd Font:size=11:antialias=true";
+static const int showbar   = 1;        /* 0 means no bar */
+static const int topbar    = 1;        /* 0 means bottom bar */
+static const char *fonts[] = { "Hack Nerd Font:size=11" };
 
 static const char *colors[][3]      = {
-	/*               fg         bg         border   */
-	[SchemeNorm] = { FG, BG, BG_DARK },
+	/*               fg       bg             border   */
+	[SchemeNorm] = { FG,      BG,            BG_DARK },
 	[SchemeSel]  = { FG_DARK, BG_HIGHLIGHT,  BG_DARK  },
 };
 
-// tagging                    Arch      Terminal  Firefox   Music     Game
-static const char *tags[] = { "\uf303", "\uf120", "\uf269", "\uf001", "\uf11b", /*"6", "7", "8", "9" */};
+// tagging                    Arch      Terminal  Chrome    Music     Game      Cog
+static const char *tags[] = {"\uf303", "\uf120", "\uf268", "\uf001", "\uf11b", "\uf085"/*, "7", "8", "9" */};
 
 static const Rule rules[] = {
 	/* xprop(1):
 	 *	WM_CLASS(STRING) = instance, class
 	 *	WM_NAME(STRING) = title
 	 */
-	/* class      instance    title       tags mask     isfloating   monitor */
-	{ "Gimp",     NULL,       NULL,       0,            1,           -1 },
-	{ "Firefox",  NULL,       NULL,       1 << 8,       0,           -1 },
+	/* class      instance    title         tags mask          isfloating   monitor */
+	{ "NONE",     NULL,       "NONE",       1,            0,           -1 },
 };
 
 /* layout(s) */
@@ -80,27 +78,32 @@ static const Layout layouts[] = {
 #define SHCMD(cmd) { .v = (const char*[]){ "/bin/sh", "-c", cmd, NULL } }
 
 /* commands */
-static const char *dmenucmd[] =
-  { "dmenu_run",
-  "-fn", dmenufont,
+static const char *dmenucmd[] = {
+  "dmenu_run",
+  "-fn", "Hack Nerd Font:size=11",
   "-nb", BG,
   "-nf", FG,
   "-sb", BG_HIGHLIGHT,
   "-sf", FG_DARK,
-  NULL };
-static const char *termcmd[]  = { "st", NULL };
+  NULL
+};
+static const char *termcmd[]     = { "alacritty", NULL };
+static const char *rofi_run[]    = { "rofi", "-show", "run", NULL };
+static const char *rofi_window[] = { "rofi", "-show", "window", NULL };
 
 static const Key keys[] = {
 	/* modifier                     key        function        argument */
 	{ MODKEY,                       XK_p,      spawn,          {.v = dmenucmd } },
-	{ MODKEY|ShiftMask,             XK_Return, spawn,          {.v = termcmd } },
+	{ Mod1Mask|ShiftMask,           XK_t,      spawn,          {.v = termcmd } },
+	{ Mod1Mask|ShiftMask,           XK_q,      spawn,          {.v = rofi_run } },
+	{ Mod1Mask|ShiftMask,           XK_w,      spawn,          {.v = rofi_window } },
 	{ MODKEY,                       XK_b,      togglebar,      {0} },
 	{ MODKEY,                       XK_j,      focusstack,     {.i = +1 } },
 	{ MODKEY,                       XK_k,      focusstack,     {.i = -1 } },
 	{ MODKEY,                       XK_i,      incnmaster,     {.i = +1 } },
 	{ MODKEY,                       XK_d,      incnmaster,     {.i = -1 } },
-	{ MODKEY,                       XK_h,      setmfact,       {.f = -0.05} },
-	{ MODKEY,                       XK_l,      setmfact,       {.f = +0.05} },
+	{ MODKEY|ShiftMask,             XK_h,      setmfact,       {.f = -0.01} },
+	{ MODKEY|ShiftMask,             XK_l,      setmfact,       {.f = +0.01} },
 	{ MODKEY,                       XK_Return, zoom,           {0} },
 	{ MODKEY,                       XK_Tab,    view,           {0} },
 	{ MODKEY|ShiftMask,             XK_c,      killclient,     {0} },
@@ -120,7 +123,7 @@ static const Key keys[] = {
 	TAGKEYS(                        XK_3,                      2)
 	TAGKEYS(                        XK_4,                      3)
 	TAGKEYS(                        XK_5,                      4)
-	//TAGKEYS(                        XK_6,                      5)
+	TAGKEYS(                        XK_6,                      5)
 	//TAGKEYS(                        XK_7,                      6)
 	//TAGKEYS(                        XK_8,                      7)
 	//TAGKEYS(                        XK_9,                      8)
@@ -145,4 +148,3 @@ static const Button buttons[] = {
 	{ ClkTagBar,            MODKEY,         Button1,        tag,            {0} },
 	{ ClkTagBar,            MODKEY,         Button3,        toggletag,      {0} },
 };
-
