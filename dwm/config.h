@@ -43,6 +43,7 @@ static const char *colors[][3]      = {
 };
 
 // tagging                    Arch      Terminal  Chrome    Music     Game      Cog
+//                            1         2         3         4         5         6         
 static const char *tags[] = {"\uf303", "\uf120", "\uf268", "\uf001", "\uf11b", "\uf085"/*, "7", "8", "9" */};
 
 static const Rule rules[] = {
@@ -50,8 +51,10 @@ static const Rule rules[] = {
 	 *	WM_CLASS(STRING) = instance, class
 	 *	WM_NAME(STRING) = title
 	 */
-	/* class      instance    title         tags mask          isfloating   monitor */
-	{ "NONE",     NULL,       "NONE",       1,            0,           -1 },
+	/* class                instance    title         tags mask          isfloating   monitor */
+	{ "osu!",               NULL,       NULL,         1 << 4,            1,           -1 },
+	{ "Google-chrome",      NULL,       NULL,         1 << 2,            1,           -1 },
+	{ "Rhythmbox",          NULL,       NULL,         1 << 2,            1,           -1 },
 };
 
 /* layout(s) */

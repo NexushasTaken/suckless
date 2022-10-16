@@ -1,3 +1,5 @@
 # Executables
 dwm
 transient
+
+*.diff
