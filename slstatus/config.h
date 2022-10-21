@@ -64,7 +64,7 @@ static const char unknown_str[] = "n/a";
  * wifi_essid          WiFi ESSID                      interface name (wlan0)
  */
 #define SEP \
-  { separator, " | ", NULL},
+  { separator, " \ue0b3 ", NULL},
 static const struct arg args[] = {
 	/* function     format         argument */
   // Name
@@ -77,7 +77,7 @@ static const struct arg args[] = {
 	{ datetime,     "\uf017 %s",   "%I:%M:%S %p" },
   SEP
   // CPU percent
-  { cpu_perc,     "\ufb19 %s%%", NULL},
+  { cpu_perc,     "\ufb19%4s%%", NULL},
   // CPU MHz
   { cpu_freq,     " %s MHz",     NULL},
   SEP
