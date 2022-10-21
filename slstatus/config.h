@@ -1,4 +1,33 @@
 /* See LICENSE file for copyright and license details. */
+#define BG_DARK "#16161e"
+#define BG "#1a1b26"
+#define BG_HIGHLIGHT "#292E42"
+#define TERMINAL_BLACK "#414868"
+#define FG "#C0CAF5"
+#define FG_DARK "#A9B1D6"
+#define FG_GUTTER "#3B4261"
+#define DARK3 "#545C7E"
+#define COMMENT "#565F89"
+#define DARK5 "#737AA2"
+#define BLUE0 "#3D59A1"
+#define BLUE "#7AA2F7"
+#define CYAN "#7DCFFF"
+#define BLUE1 "#2AC3DE"
+#define BLUE2 "#0DB9D7"
+#define BLUE5 "#89DDFF"
+#define BLUE6 "#B4F9F8"
+#define BLUE7 "#394B70"
+#define MAGENTA "#BB9AF7"
+#define MAGENTA2 "#FF007C"
+#define PURPLE "#9D7CD8"
+#define ORANGE "#FF9E64"
+#define YELLOW "#E0AF68"
+#define GREEN "#9ECE6A"
+#define GREEN1 "#73DACA"
+#define GREEN2 "#41A6B5"
+#define TEAL "#1ABC9C"
+#define RED "#F7768E"
+#define RED1 "#DB4B4B"
 
 /* interval between updates (in ms) */
 const unsigned int interval = 1000;
@@ -63,30 +92,31 @@ static const char unknown_str[] = "n/a";
  * wifi_perc           WiFi signal in percent          interface name (wlan0)
  * wifi_essid          WiFi ESSID                      interface name (wlan0)
  */
-#define SEP \
-  { separator, " \ue0b3 ", NULL},
+#define SEP { separator, "^b" BG "^^c" FG "^ \ue0b3 ", NULL},
+#define RESET "^c" FG "^"
 static const struct arg args[] = {
 	/* function     format         argument */
   // Name
-  { separator,    " Nexus",      NULL},
+  { separator,    "^b" BG_HIGHLIGHT "^ ^b" BG_HIGHLIGHT "^^c" BG "^\ue0b2", NULL},           
+  { separator,    "^b" BG "^^c#ffffff^ Nexus",                              NULL},           
   SEP
-  // Date
-	{ datetime,     "\uf073 %s",   "%a %b %d" },
-  SEP
-  // Time
-	{ datetime,     "\uf017 %s",   "%I:%M:%S %p" },
+  { disk_used,    "^c#808080^\uf0a0 " RESET "%s/",                          "/"},            
+  { disk_total,   "%s GB",                                                  "/"},            
   SEP
   // CPU percent
-  { cpu_perc,     "\ufb19%4s%%", NULL},
+  { cpu_perc,     "^c#808080^\ufb19 " RESET "%3s%%",                        NULL},           
   // CPU MHz
-  { cpu_freq,     " %s MHz",     NULL},
+  { cpu_freq,     " %s MHz",                                                NULL},           
   SEP
-  { disk_used,    "\uf0a0 %s/",  "/"},
-  { disk_total,   "%s GB",       "/"},
+  { ram_used,     "^c#ffffff^RAM " RESET "%s/",                             NULL},           
+  { ram_total,    "%s GB",                                                  NULL},           
   SEP
-  { netspeed_rx,  "%5s \uf103 ", "eno1"},
-  { netspeed_tx,  "%5s \uf102",  "eno1"},
+  { netspeed_rx,  "%5s ^c#00ff00^\uf103 ",                                  "eno1"},         
+  { netspeed_tx,  RESET "%5s ^c#9D7CD8^\uf102",                             "eno1"},         
   SEP
-  { ram_used,     " %s/",        NULL},
-  { ram_total,    "%s GB",       NULL},
+  // Date
+	{ datetime,     "^c#ffffff^\uf073 " RESET "%s",                           "%a %b %d" },    
+  SEP
+  // Time
+	{ datetime,     "^c#ffff00^\uf017 " RESET "%s ",                           "%I:%M:%S %p" }, 
 };

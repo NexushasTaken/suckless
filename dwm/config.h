@@ -46,6 +46,30 @@ static const char *colors[][3]      = {
 //                            1         2         3         4         5         6         
 static const char *tags[] = {"\uf303", "\uf120", "\uf268", "\uf001", "\uf11b", "\uf085"/*, "7", "8", "9" */};
 
+static const char *tagsel[][2] = {
+	{ "#00ffff", BG_HIGHLIGHT },
+	{ "#ffffff", BG_HIGHLIGHT },
+	{ "#ffff00", BG_HIGHLIGHT },
+	{ "#8f00ff", BG_HIGHLIGHT },
+	{ "#ffffff", BG_HIGHLIGHT },
+	{ "#888888", BG_HIGHLIGHT },
+  { "#ffffff", BG_HIGHLIGHT },
+  { "#ffffff", BG_HIGHLIGHT },
+	{ "#ffffff", BG_HIGHLIGHT },
+};
+
+static const char *tagnorm[][2] = {
+	{ "#00ffff", BG },
+	{ "#ffffff", BG },
+	{ "#ffff00", BG },
+	{ "#8f00ff", BG },
+	{ "#ffffff", BG },
+	{ "#888888", BG },
+  { "#ffffff", BG },
+  { "#ffffff", BG },
+	{ "#ffffff", BG },
+};
+
 static const Rule rules[] = {
 	/* xprop(1):
 	 *	WM_CLASS(STRING) = instance, class
@@ -90,7 +114,7 @@ static const char *dmenucmd[] = {
   "-sf", FG_DARK,
   NULL
 };
-static const char *termcmd[]     = { "alacritty", NULL };
+static const char *termcmd[]     = { "/snap/bin/alacritty", NULL };
 static const char *rofi_run[]    = { "rofi", "-show", "run", NULL };
 static const char *rofi_window[] = { "rofi", "-show", "window", NULL };
 
