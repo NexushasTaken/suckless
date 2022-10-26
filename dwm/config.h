@@ -114,7 +114,7 @@ static const char *dmenucmd[] = {
   "-sf", FG_DARK,
   NULL
 };
-static const char *termcmd[]     = { "/snap/bin/alacritty", NULL };
+static const char *termcmd[]     = { "alacritty", NULL };
 static const char *rofi_run[]    = { "rofi", "-show", "run", NULL };
 static const char *rofi_window[] = { "rofi", "-show", "window", NULL };
 
