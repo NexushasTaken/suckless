@@ -78,7 +78,7 @@ static const Rule rules[] = {
 	/* class                instance    title         tags mask          isfloating   monitor */
 	{ "osu!",               NULL,       NULL,         1 << 4,            1,           -1 },
 	{ "Google-chrome",      NULL,       NULL,         1 << 2,            1,           -1 },
-	{ "Rhythmbox",          NULL,       NULL,         1 << 2,            1,           -1 },
+	{ "Rhythmbox",          NULL,       NULL,         1 << 3,            0,           -1 },
 };
 
 /* layout(s) */
@@ -117,6 +117,9 @@ static const char *dmenucmd[] = {
 static const char *termcmd[]     = { "alacritty", NULL };
 static const char *rofi_run[]    = { "rofi", "-show", "run", NULL };
 static const char *rofi_window[] = { "rofi", "-show", "window", NULL };
+// Screenshot
+static const char *shot[] = { "scrot", "-q", "100", NULL };
+static const char *shotarea[] = { "scrot", "-q", "100", "-s", NULL };
 
 static const Key keys[] = {
 	/* modifier                     key        function        argument */
@@ -124,6 +127,8 @@ static const Key keys[] = {
 	{ Mod1Mask|ShiftMask,           XK_t,      spawn,          {.v = termcmd } },
 	{ Mod1Mask|ShiftMask,           XK_q,      spawn,          {.v = rofi_run } },
 	{ Mod1Mask|ShiftMask,           XK_w,      spawn,          {.v = rofi_window } },
+	{ 0,                            XK_Print,  spawn,          {.v = shot } },
+	{ ShiftMask,                    XK_Print,  spawn,          {.v = shotarea } },
 	{ MODKEY,                       XK_b,      togglebar,      {0} },
 	{ MODKEY,                       XK_j,      focusstack,     {.i = +1 } },
 	{ MODKEY,                       XK_k,      focusstack,     {.i = -1 } },
