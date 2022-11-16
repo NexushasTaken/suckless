@@ -42,7 +42,14 @@ static const char *colors[][3]      = {
 	[SchemeSel]  = { FG_DARK, BG_HIGHLIGHT,  BG_DARK  },
 };
 
-// tagging                    Arch      Terminal  Chrome    Music     Game      Cog
+#define TAG_ARCH 0
+#define TAG_TERMINAL 1
+#define TAG_BROWSER 2
+#define TAG_MUSIC 3
+#define TAG_GAME 4
+#define TAG_COG 5
+
+// tagging                    Arch      Terminal  Browser   Music     Game      Cog
 //                            1         2         3         4         5         6         
 static const char *tags[] = {"\uf303", "\uf120", "\uf268", "\uf001", "\uf11b", "\uf085"/*, "7", "8", "9" */};
 
@@ -75,10 +82,12 @@ static const Rule rules[] = {
 	 *	WM_CLASS(STRING) = instance, class
 	 *	WM_NAME(STRING) = title
 	 */
-	/* class                instance    title         tags mask          isfloating   monitor */
-	{ "osu!",               NULL,       NULL,         1 << 4,            1,           -1 },
-	{ "Google-chrome",      NULL,       NULL,         1 << 2,            1,           -1 },
-	{ "Rhythmbox",          NULL,       NULL,         1 << 3,            0,           -1 },
+	/* class,                    instance, title, tags mask,        isfloating, monitor */
+	{ "osu!",                    NULL,     NULL,  1 << TAG_GAME,    1,          -1 },       
+	{ "Google-chrome",           NULL,     NULL,  1 << TAG_BROWSER, 1,          -1 },       
+	{ "Firefox-esr",             NULL,     NULL,  1 << TAG_BROWSER, 1,          -1 },       
+	{ "Rhythmbox",               NULL,     NULL,  1 << TAG_MUSIC,   0,          -1 },       
+	{ "OpenTabletDriver.UX.Gtk", NULL,     NULL,  1 << TAG_COG,     1,          -1 },       
 };
 
 /* layout(s) */
@@ -114,9 +123,9 @@ static const char *dmenucmd[] = {
   "-sf", FG_DARK,
   NULL
 };
-static const char *termcmd[]     = { "alacritty", NULL };
+static const char *termcmd[]     = { "/snap/alacritty/46/bin/alacritty", NULL };
 static const char *rofi_run[]    = { "rofi", "-show", "run", NULL };
-static const char *rofi_window[] = { "rofi", "-show", "window", NULL };
+static const char *rofi_calc[]    = { "rofi", "-show", "calc", NULL };
 // Screenshot
 static const char *shot[] = { "scrot", "-q", "100", NULL };
 static const char *shotarea[] = { "scrot", "-q", "100", "-s", NULL };
@@ -126,7 +135,7 @@ static const Key keys[] = {
 	{ MODKEY,                       XK_p,      spawn,          {.v = dmenucmd } },
 	{ Mod1Mask|ShiftMask,           XK_t,      spawn,          {.v = termcmd } },
 	{ Mod1Mask|ShiftMask,           XK_q,      spawn,          {.v = rofi_run } },
-	{ Mod1Mask|ShiftMask,           XK_w,      spawn,          {.v = rofi_window } },
+	{ Mod1Mask|ShiftMask,           XK_c,      spawn,          {.v = rofi_calc } },
 	{ 0,                            XK_Print,  spawn,          {.v = shot } },
 	{ ShiftMask,                    XK_Print,  spawn,          {.v = shotarea } },
 	{ MODKEY,                       XK_b,      togglebar,      {0} },
