@@ -11,7 +11,7 @@ int main(void) {
 	XSizeHints h;
 	XEvent e;
 
-	d = XOpenDisplay(":1.0");
+	d = XOpenDisplay(NULL);
 	if (!d)
 		exit(1);
 	r = DefaultRootWindow(d);

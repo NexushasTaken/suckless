@@ -46,3 +46,13 @@ Configuration
 -------------
 The configuration of dwm is done by creating a custom config.h
 and (re)compiling the source code.
+
+Code changes
+------------
+Removed window tiling manager capabilities
+Organized functions
+
+Added Patches
+--------
+https://dwm.suckless.org/patches/rainbowtags
+https://dwm.suckless.org/patches/systray
