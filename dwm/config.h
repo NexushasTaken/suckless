@@ -50,33 +50,14 @@ static const char *colors[][3]      = {
 	[SchemeSel]  = { FG_DARK, BG_HIGHLIGHT,  BG_DARK  },
 };
 
-#define TAG_ARCH 0
-#define TAG_TERMINAL 1
-#define TAG_BROWSER 2
-#define TAG_MUSIC 3
-#define TAG_GAME 4
-#define TAG_COG 5
-
 /* tagging */
 static const char *tags[] = {
-  [TAG_ARCH]     = "\uf303",
-  [TAG_TERMINAL] = "\uf120",
-  [TAG_BROWSER]  = "\uf268",
-  [TAG_MUSIC]    = "\uf001",
-  [TAG_GAME]     = "\uf11b",
-  [TAG_COG]      = "\uf085"
-  /*, "7", "8", "9" */
+  "\uf303", /* Archlinux */
+  "\uf120", /* Terminal */
 };
 
 #ifdef RAINBOW_TAG
-static const char *tagcolors[] = {
-	[TAG_ARCH]     = "#00ffff",
-	[TAG_TERMINAL] = "#ffffff",
-	[TAG_BROWSER]  = "#ffff00",
-	[TAG_MUSIC]    = "#8f00ff",
-	[TAG_GAME]     = "#ffffff",
-	[TAG_COG]      = "#888888",
-};
+static const char *tagcolors[] = { "#00ffff", "#ffffff" };
 static const char tagsel[] = BG_HIGHLIGHT;
 static const char tagnorm[] = BG;
 #endif
@@ -86,12 +67,8 @@ static const Rule rules[] = {
 	 *	WM_CLASS(STRING) = instance, class
 	 *	WM_NAME(STRING) = title
 	 */
-	/* class                     instance  title  tags mask         isfloating  monitor */
-	{ "osu!",                    NULL,     NULL,  1 << TAG_GAME,    1,          -1 },       
-	{ "Google-chrome",           NULL,     NULL,  1 << TAG_BROWSER, 1,          -1 },       
-	{ "Firefox-esr",             NULL,     NULL,  1 << TAG_BROWSER, 1,          -1 },       
-	{ "Rhythmbox",               NULL,     NULL,  1 << TAG_MUSIC,   0,          -1 },       
-	{ "OpenTabletDriver.UX.Gtk", NULL,     NULL,  1 << TAG_COG,     1,          -1 },       
+	/* class  instance  title  tags-mask  isfloating  monitor */
+	{ NULL,   NULL,     NULL,  1,         1,          -1 },
 };
 
 /* layout(s) */
@@ -137,7 +114,7 @@ static const char *dmenucmd[] = {
 // Screenshot
 static const char *shotcmd[] = { "scrot", "-q", "100", NULL };
 static const char *shotareacmd[] = { "scrot", "-q", "100", "-s", NULL };
-static const char *termcmd[]     = { "/snap/alacritty/46/bin/alacritty", NULL };
+static const char *termcmd[]     = { "alacritty", NULL };
 
 static const Key keys[] = {
 	/* modifier                     key        function        argument */
